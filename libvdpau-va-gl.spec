@@ -1,6 +1,6 @@
 Name:           libvdpau-va-gl
 Version:        0.2.1
-Release:        1%{?dist}
+Release:        1%{?dist}.1
 Summary:        VDPAU driver with OpenGL/VAAPI back-end
 
 License:        LGPLv3
@@ -13,7 +13,7 @@ ExclusiveArch:  i686 x86_64 ia64
 BuildRequires:  cmake
 BuildRequires:  pkgconfig(vdpau)
 BuildRequires:  pkgconfig(glib-2.0)
-BuildRequires:  pkgconfig(libswscale)
+BuildRequires:  pkgconfig(libswscale) ffmpeg-devel
 BuildRequires:  pkgconfig(libva-glx)
 BuildRequires:  pkgconfig(gl)
 BuildRequires:  pkgconfig(glu)
@@ -62,6 +62,9 @@ ln -s libvdpau_va_gl.so.1 $RPM_BUILD_ROOT%{_libdir}/vdpau/libvdpau_i965.so.1
 
 
 %changelog
+* Sun Dec 08 2013 Nicolas Chauvet <kwizart@gmail.com> - 0.2.1-1.1
+- Enforce ffmpeg over ffmpeg-compat on EL
+
 * Tue Nov 19 2013 Nicolas Chauvet <kwizart@gmail.com> - 0.2.1-1
 - Update to 0.2.1
 
