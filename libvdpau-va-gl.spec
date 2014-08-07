@@ -1,6 +1,6 @@
 Name:           libvdpau-va-gl
 Version:        0.3.4
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        VDPAU driver with OpenGL/VAAPI back-end
 
 License:        LGPLv3
@@ -62,6 +62,9 @@ ln -s libvdpau_va_gl.so.1 $RPM_BUILD_ROOT%{_libdir}/vdpau/libvdpau_i965.so.1
 
 
 %changelog
+* Thu Aug 07 2014 Sérgio Basto <sergio@serjux.com> - 0.3.4-2
+- Rebuilt for ffmpeg-2.3
+
 * Sat Apr 12 2014 Nicolas Chauvet <kwizart@gmail.com> - 0.3.4-1
 - Update to 0.3.4
 
