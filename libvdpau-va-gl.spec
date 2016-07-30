@@ -1,6 +1,6 @@
 Name:           libvdpau-va-gl
 Version:        0.3.6
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        VDPAU driver with OpenGL/VAAPI back-end
 
 License:        LGPLv3
@@ -63,6 +63,9 @@ ln -s libvdpau_va_gl.so.1 $RPM_BUILD_ROOT%{_libdir}/vdpau/libvdpau_i965.so.1
 
 
 %changelog
+* Sat Jul 30 2016 Julian Sikorski <belegdol@fedoraproject.org> - 0.3.6-2
+- Rebuilt for ffmpeg-3.1.1
+
 * Sun May 22 2016 Nicolas Chauvet <kwizart@gmail.com> - 0.3.6-1
 - Update to 0.3.6
 
