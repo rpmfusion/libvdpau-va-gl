@@ -1,6 +1,6 @@
 Name:           libvdpau-va-gl
-Version:        0.3.6
-Release:        2%{?dist}
+Version:        0.4.0
+Release:        1%{?dist}
 Summary:        VDPAU driver with OpenGL/VAAPI back-end
 
 License:        LGPLv3
@@ -13,7 +13,6 @@ ExclusiveArch:  i686 x86_64 ia64
 BuildRequires:  cmake
 BuildRequires:  pkgconfig(vdpau)
 BuildRequires:  pkgconfig(glib-2.0)
-BuildRequires:  pkgconfig(libswscale)
 BuildRequires:  pkgconfig(libva-glx)
 BuildRequires:  pkgconfig(gl)
 BuildRequires:  pkgconfig(glu)
@@ -47,22 +46,18 @@ cd build
 find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
 
 
-#This should automatically enable vdpau backend on intel i965
-#But xf86-intel doesn't want't to apply
-#http://lists.freedesktop.org/archives/intel-gfx/2013-August/031872.html
-ln -s libvdpau_va_gl.so.1 $RPM_BUILD_ROOT%{_libdir}/vdpau/libvdpau_i965.so.1
-
-
 %files
-%doc ChangeLog COPYING* README.md
+%doc ChangeLog LICENSE README.md
 %{_libdir}/vdpau/libvdpau_va_gl.so.1
 %exclude %{_libdir}/vdpau/libvdpau_va_gl.so
-#Hack - Will be removed
-%{_libdir}/vdpau/libvdpau_i965.so.1
 
 
 
 %changelog
+* Tue Aug 30 2016 Nicolas Chauvet <kwizart@gmail.com> - 0.4.0-1
+- Update to 0.4.0
+- Drop compat symlink
+
 * Sat Jul 30 2016 Julian Sikorski <belegdol@fedoraproject.org> - 0.3.6-2
 - Rebuilt for ffmpeg-3.1.1
 
