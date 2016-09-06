@@ -12,10 +12,8 @@ ExclusiveArch:  i686 x86_64 ia64
 
 BuildRequires:  cmake
 BuildRequires:  pkgconfig(vdpau)
-BuildRequires:  pkgconfig(glib-2.0)
 BuildRequires:  pkgconfig(libva-glx)
 BuildRequires:  pkgconfig(gl)
-BuildRequires:  pkgconfig(glu)
 
 Requires: libva-intel-driver
 
