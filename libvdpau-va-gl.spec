@@ -1,11 +1,11 @@
 Name:           libvdpau-va-gl
-Version:        0.4.0
+Version:        0.4.2
 Release:        1%{?dist}
 Summary:        VDPAU driver with OpenGL/VAAPI back-end
 
 License:        LGPLv3
 URL:            https://github.com/i-rinat/libvdpau-va-gl
-Source0:        https://github.com/i-rinat/libvdpau-va-gl/archive/v%{version}.tar.gz
+Source0:        https://github.com/i-rinat/%{name}/archive/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
 
 #Unlikely to have some meaning outside of intel driver
 ExclusiveArch:  i686 x86_64 ia64
@@ -15,7 +15,7 @@ BuildRequires:  pkgconfig(vdpau)
 BuildRequires:  pkgconfig(libva-glx)
 BuildRequires:  pkgconfig(gl)
 
-Requires: libva-intel-driver
+Requires: libva-intel-driver%{?_isa}
 
 
 
@@ -24,7 +24,7 @@ VDPAU driver with OpenGL/VAAPI back-end.
 
 
 %prep
-%setup -q
+%autosetup -q
 
 
 %build
@@ -35,23 +35,29 @@ cd build
   -DLIB_INSTALL_DIR=%{_libdir}/vdpau \
    ..
 
-make %{?_smp_mflags}
+%make_build
 
 
 %install
 cd build
 %make_install
-find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
+find %{buildroot} -name '*.la' -exec rm -f {} ';'
 
 
 %files
-%doc ChangeLog LICENSE README.md
+%doc ChangeLog README.md
+%license LICENSE
 %{_libdir}/vdpau/libvdpau_va_gl.so.1
 %exclude %{_libdir}/vdpau/libvdpau_va_gl.so
 
 
 
 %changelog
+* Wed Oct 12 2016 Nicolas Chauvet <kwizart@gmail.com> - 0.4.2-1
+- Update to 0.4.2
+- Add %%{?_isa} to Requires libva-intel-driver
+- Use %%make_build macro
+
 * Tue Aug 30 2016 Nicolas Chauvet <kwizart@gmail.com> - 0.4.0-1
 - Update to 0.4.0
 - Drop compat symlink
