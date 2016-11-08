@@ -1,9 +1,9 @@
 Name:           libvdpau-va-gl
 Version:        0.4.2
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        VDPAU driver with OpenGL/VAAPI back-end
 
-License:        LGPLv3
+License:        MIT
 URL:            https://github.com/i-rinat/libvdpau-va-gl
 Source0:        https://github.com/i-rinat/%{name}/archive/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
 
@@ -24,7 +24,7 @@ VDPAU driver with OpenGL/VAAPI back-end.
 
 
 %prep
-%autosetup -q
+%autosetup
 
 
 %build
@@ -41,7 +41,7 @@ cd build
 %install
 cd build
 %make_install
-find %{buildroot} -name '*.la' -exec rm -f {} ';'
+find %{buildroot} -name '*.la' -delete
 
 
 %files
@@ -53,6 +53,9 @@ find %{buildroot} -name '*.la' -exec rm -f {} ';'
 
 
 %changelog
+* Tue Nov 08 2016 Nicolas Chauvet <kwizart@gmail.com> - 0.4.2-2
+- Fixup License and libtool deletion
+
 * Wed Oct 12 2016 Nicolas Chauvet <kwizart@gmail.com> - 0.4.2-1
 - Update to 0.4.2
 - Add %%{?_isa} to Requires libva-intel-driver
