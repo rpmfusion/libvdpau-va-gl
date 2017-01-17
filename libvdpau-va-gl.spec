@@ -1,21 +1,21 @@
 Name:           libvdpau-va-gl
 Version:        0.4.2
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        VDPAU driver with OpenGL/VAAPI back-end
 
 License:        MIT
 URL:            https://github.com/i-rinat/libvdpau-va-gl
 Source0:        https://github.com/i-rinat/%{name}/archive/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
 
-#Unlikely to have some meaning outside of intel driver
-ExclusiveArch:  i686 x86_64 ia64
-
 BuildRequires:  cmake
+BuildRequires:  gcc-c++
 BuildRequires:  pkgconfig(vdpau)
 BuildRequires:  pkgconfig(libva-glx)
 BuildRequires:  pkgconfig(gl)
 
-Requires: libva-intel-driver%{?_isa}
+#As per https://fedorahosted.org/council/ticket/61
+#libva-intel-driver can use supplement/enhance
+#Requires: libva-intel-driver%{?_isa}
 
 
 
@@ -48,11 +48,17 @@ find %{buildroot} -name '*.la' -delete
 %doc ChangeLog README.md
 %license LICENSE
 %{_libdir}/vdpau/libvdpau_va_gl.so.1
+#VDPAU only dlopen the versioned so
 %exclude %{_libdir}/vdpau/libvdpau_va_gl.so
 
 
 
 %changelog
+* Tue Jan 17 2017 Nicolas Chauvet <kwizart@gmail.com> - 0.4.2-3
+- Drop ExclusiveArch
+- Add comment about why to drop un-versioned symlink
+- Add missing BR
+
 * Tue Nov 08 2016 Nicolas Chauvet <kwizart@gmail.com> - 0.4.2-2
 - Fixup License and libtool deletion
 
